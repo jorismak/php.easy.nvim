@@ -16,9 +16,6 @@ local function initObject(type)
 	local file = vim.fn.expand("%:t:r")
 	local path = vim.fn.fnamemodify(vim.fn.expand("%:p:h"), ":~:.")
 
-	-- find psr4 in composer.json
-	-- local psr4 = {}
-	-- local is_psr4 = false
 	local composerPath = vim.fn.getcwd() .. "/composer.json", "r"
 	local f = io.open(composerPath, "rb")
 	local composerContentString = f:read("*all")
@@ -26,24 +23,8 @@ local function initObject(type)
 
 	local composerContent = json.decode(composerContentString) or {}
 
-	local autoload = composerContent.autoloadfoobar or {}
+	local autoload = composerContent.autoload or {}
 	local psr4 = autoload["psr-4"] or {}
-	vim.print(psr4)
-
-	-- for line in io.lines(composerPath) do
-	-- 	if line == "    }" then
-	-- 		is_psr4 = false
-	-- 	end
-	--
-	-- 	if is_psr4 then
-	-- 		local parts = vim.split(vim.trim(line):gsub('[" ,]+', ""), ":")
-	-- 		psr4[parts[1]:gsub("\\\\", "\\")] = parts[2]
-	-- 	end
-	--
-	-- 	if line == '    "psr-4": {' then
-	-- 		is_psr4 = true
-	-- 	end
-	-- end
 
 	-- fix by psr4
 	if vim.tbl_count(psr4) > 0 then
