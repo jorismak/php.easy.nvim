@@ -26,7 +26,8 @@ local function initObject(type)
 
 	local composerContent = json.decode(composerContentString)
 
-	vim.print(composerContent.autoload["psr-4"])
+	vim.print(composerContent.autoloadfoobar["psr-4"])
+
 	-- for line in io.lines(composerPath) do
 	-- 	if line == "    }" then
 	-- 		is_psr4 = false
