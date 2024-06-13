@@ -11,7 +11,7 @@ function M.docBlock()
 end
 
 local function initObject(type)
-	-- local json = require("json")
+	local json = require("php-easy-nvim.any.entities.json")
 	-- prepare name and path
 	local file = vim.fn.expand("%:t:r")
 	local path = vim.fn.fnamemodify(vim.fn.expand("%:p:h"), ":~:.")
