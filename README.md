@@ -1,3 +1,10 @@
+# Tweaks
+
+This fork:
+
+ - Replaces 'final class' with 'class'
+ - Uses a json decoder module (https://github.com/rxi/json.lua) to parse composer.json to find PSR-4 information (instead of looking for hardcoded number of spaces)
+
 # Php Easy NVim
 
 A few functions for make work with PHP 7.4 (or more) projects easy and quickly.
