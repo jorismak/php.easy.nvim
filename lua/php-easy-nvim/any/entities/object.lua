@@ -20,12 +20,12 @@ local function initObject(type)
 	local psr4 = {}
 	local is_psr4 = false
 	local composerPath = vim.fn.getcwd() .. "/composer.json", "r"
-	-- local f = io.open(composerPath, "rb")
-	-- local composerContentString = f:read("*all")
-	-- f:close()
+	local f = io.open(composerPath, "rb")
+	local composerContentString = f:read("*all")
+	f:close()
 
-	-- local composerContent = json.decode(composerContentString)
-	-- vim.print(composerContentString)
+	local composerContent = json.decode(composerContentString)
+	vim.print(composerContentString)
 	for line in io.lines(composerPath) do
 		if line == "    }" then
 			is_psr4 = false
