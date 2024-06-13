@@ -26,22 +26,21 @@ local function initObject(type)
 
 	local composerContent = json.decode(composerContentString)
 
-	for line in io.lines(composerPath) do
-		if line == "    }" then
-			is_psr4 = false
-		end
-
-		if is_psr4 then
-			local parts = vim.split(vim.trim(line):gsub('[" ,]+', ""), ":")
-			psr4[parts[1]:gsub("\\\\", "\\")] = parts[2]
-		end
-
-		if line == '    "psr-4": {' then
-			is_psr4 = true
-		end
-	end
-
-	vim.print(psr4)
+	vim.print(composerContent.autoload["psr-4"])
+	-- for line in io.lines(composerPath) do
+	-- 	if line == "    }" then
+	-- 		is_psr4 = false
+	-- 	end
+	--
+	-- 	if is_psr4 then
+	-- 		local parts = vim.split(vim.trim(line):gsub('[" ,]+', ""), ":")
+	-- 		psr4[parts[1]:gsub("\\\\", "\\")] = parts[2]
+	-- 	end
+	--
+	-- 	if line == '    "psr-4": {' then
+	-- 		is_psr4 = true
+	-- 	end
+	-- end
 
 	-- fix by psr4
 	if vim.tbl_count(psr4) > 0 then
