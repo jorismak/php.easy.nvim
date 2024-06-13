@@ -17,16 +17,17 @@ local function initObject(type)
 	local path = vim.fn.fnamemodify(vim.fn.expand("%:p:h"), ":~:.")
 
 	-- find psr4 in composer.json
-	local psr4 = {}
-	local is_psr4 = false
+	-- local psr4 = {}
+	-- local is_psr4 = false
 	local composerPath = vim.fn.getcwd() .. "/composer.json", "r"
 	local f = io.open(composerPath, "rb")
 	local composerContentString = f:read("*all")
 	f:close()
 
-	local composerContent = json.decode(composerContentString)
+	local composerContent = json.decode(composerContentString) or {}
 
-	local psr4 = assert(composerContent.autoloadfoobar["psr-4"])
+	local autoload = composerContent.autoloadfoobar or {}
+	local psr4 = autoload["psr-4"] or {}
 	vim.print(psr4)
 
 	-- for line in io.lines(composerPath) do
